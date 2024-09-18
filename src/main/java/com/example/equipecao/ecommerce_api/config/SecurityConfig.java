@@ -14,8 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.example.equipecao.ecommerce_api.service.CustomUserDetailsService;
 
-import org.springframework.http.HttpMethod;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
