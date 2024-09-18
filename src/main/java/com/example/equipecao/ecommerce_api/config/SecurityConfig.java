@@ -41,9 +41,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.GET, "/api/login", "/api/usuarios/**").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(form -> form
-                        .loginPage("/login") // URL da página de login personalizada
-                        .permitAll())
+                .formLogin(form -> form.disable()) // Desabilitar o redirecionamento para a página de login
                 .logout(logout -> logout.permitAll());
 
         return http.build();
@@ -51,6 +49,6 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().requestMatchers(HttpMethod.GET, "/api/login", "/api/usuarios/**");
+        return (web) -> web.ignoring().requestMatchers("/api/login", "/api/usuarios/**");
     }
 }

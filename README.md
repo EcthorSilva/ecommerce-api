@@ -152,6 +152,7 @@ A API retornará respostas com os seguintes códigos de status:
 - `201 Created`: Um novo recurso foi criado com sucesso (usado para POST).
 - `204 No Content`: A solicitação de exclusão foi bem-sucedida (usado para DELETE).
 - `400 Bad Request`: A solicitação foi malformada ou contém dados inválidos.
+- `403 Forbidden`: Recusa de acesso pelo servidor.
 - `404 Not Found`: O recurso solicitado não foi encontrado.
 - `500 Internal Server Error`: O servidor encontrou um erro interno.
 ---
