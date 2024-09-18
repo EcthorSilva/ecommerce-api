@@ -37,14 +37,14 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
                 .requestMatchers(HttpMethod.GET, "/api/login", "/api/usuarios/**").permitAll()
                 .anyRequest().authenticated()
-            .and()
-            .formLogin().permitAll()
-            .and()
-            .logout().permitAll();
+            )
+            .formLogin(form -> form.permitAll())
+            .logout(logout -> logout.permitAll());
+
         return http.build();
     }
 
