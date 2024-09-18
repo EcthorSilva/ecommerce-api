@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -49,5 +50,14 @@ public class LoginController {
     public ResponseEntity<String> logout(HttpSession session) {
         session.invalidate();
         return ResponseEntity.ok("Logout realizado com sucesso");
+    }
+}
+
+@Controller
+class LoginPageController {
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "login"; // Nome do arquivo login.html em src/main/resources/templates
     }
 }
