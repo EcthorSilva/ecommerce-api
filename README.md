@@ -55,18 +55,11 @@ Retorna uma lista de produtos com base na categoria especificada.
 
 #### Categorias Disponíveis
 
-- COMPUTADOR
-- NOTEBOOK
-- SMARTPHONE
-- MONITOR
-- TECLADO
-- MOUSE
-- HEADSET
-- PLACA_DE_VIDEO
-- PROCESSADOR
-- MEMORIA_RAM
-- ARMAZENAMENTO
-- OUTROS
+- WINDOWS,
+- STEAM,
+- PLAYSTATION,
+- XBOX,
+- OUTROS;
 
 #### Exemplo de Solicitação
 
