@@ -6,7 +6,6 @@ import com.example.equipecao.ecommerce_api.util.CPFValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -21,9 +20,6 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listAll() {
@@ -46,7 +42,7 @@ public class UsuarioController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CPF inválido.");
         }
 
-        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        usuario.setSenha(usuario.getSenha()); // Remova a codificação da senha
         usuario.setAtivo(true);
         usuarioRepository.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuário cadastrado com sucesso.");
@@ -55,7 +51,11 @@ public class UsuarioController {
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> findById(@PathVariable long id) {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
-        return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+        if (usuario.isPresent()) {
+            return ResponseEntity.ok(usuario.get());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @PutMapping("/{id}")
@@ -79,19 +79,19 @@ public class UsuarioController {
 
     @PatchMapping("/{id}/status")
     public ResponseEntity<String> updateStatus(@PathVariable long id, @RequestParam boolean ativo) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
-        if (!usuarioOptional.isPresent()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado.");
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            usuario.setAtivo(ativo);
+            usuarioRepository.save(usuario);
+            return ResponseEntity.ok("Status do usuário atualizado com sucesso.");
         }
-        Usuario usuario = usuarioOptional.get();
-        usuario.setAtivo(ativo);
-        usuarioRepository.save(usuario);
-        return ResponseEntity.ok("Status do usuário atualizado com sucesso.");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado.");
     }
 
     private boolean isValidEmail(String email) {
-        String emailRegex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pat = Pattern.compile(emailRegex);
-        return pat.matcher(email).matches();
+        return email != null && pat.matcher(email).matches();
     }
 }
