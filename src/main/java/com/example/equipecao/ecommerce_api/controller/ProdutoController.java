@@ -34,32 +34,42 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Produto> findById(@PathVariable long id) {
-        return repository.findById(id);
+    public ResponseEntity<Produto> findById(@PathVariable long id) {
+        Optional<Produto> produto = repository.findById(id);
+        if (produto.isPresent()) {
+            return ResponseEntity.ok(produto.get());
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado");
+        }
     }
 
     @PostMapping
-    public ResponseEntity<Long> create(@Valid @RequestBody Produto produto) {
-        Produto savedProduto = repository.save(produto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduto.getId());
+    public ResponseEntity<String> create(@Valid @RequestBody Produto produto) {
+        try {
+            Produto savedProduto = repository.save(produto);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Produto cadastrado com sucesso. ID: " + savedProduto.getId());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao cadastrar o produto.");
+        }
     }
 
     @PutMapping("/{id}")
-    public void update(@Valid @RequestBody Produto produto, @PathVariable long id) {
+    public ResponseEntity<String> update(@Valid @RequestBody Produto produto, @PathVariable long id) {
         if (!repository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado");
         }
         produto.setId(id);
         repository.save(produto);
+        return ResponseEntity.ok("Produto atualizado com sucesso.");
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable long id) {
+    public ResponseEntity<String> delete(@PathVariable long id) {
         if (!repository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Produto não encontrado");
         }
         repository.deleteById(id);
+        return ResponseEntity.ok("Produto excluído com sucesso.");
     }
 
     @PatchMapping("/{id}/status")
