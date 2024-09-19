@@ -1,23 +1,35 @@
 package com.example.equipecao.ecommerce_api.config;
 
+import com.example.equipecao.ecommerce_api.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 
-import com.example.equipecao.ecommerce_api.service.CustomUserDetailsService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @SuppressWarnings("unused")
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
@@ -36,9 +48,90 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Desabilitar CSRF para testes
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/**").permitAll() // Permitir todas as solicitações para /api/produtos
+                .requestMatchers("/api/auth/login", "/api/auth/logout").permitAll() // Permitir acesso público ao login e logout
+                .requestMatchers("/api/produtos/**").hasAnyRole("ADMINISTRADOR", "ESTOQUISTA") // Permitir acesso a produtos para administradores e estoquistas
+                .requestMatchers("/api/**").hasRole("ADMINISTRADOR") // Permitir acesso a todas as outras rotas apenas para administradores
                 .anyRequest().authenticated()
+            )
+            .formLogin(form -> form
+                .loginProcessingUrl("/api/auth/login")
+                .usernameParameter("email")
+                .passwordParameter("senha")
+                .successHandler(authenticationSuccessHandler())
+                .failureHandler(authenticationFailureHandler())
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutUrl("/api/auth/logout")
+                .logoutSuccessHandler(logoutSuccessHandler())
+                .permitAll()
+            )
+            .exceptionHandling(exception -> exception
+                .authenticationEntryPoint((request, response, authException) -> {
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                    PrintWriter writer = response.getWriter();
+                    writer.write("{\"error\": \"Unauthorized\", \"message\": \"" + authException.getMessage() + "\"}");
+                    writer.flush();
+                    writer.close();
+                })
+                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                    response.setContentType("application/json;charset=UTF-8");
+                    response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+                    PrintWriter writer = response.getWriter();
+                    writer.write("{\"error\": \"Forbidden\", \"message\": \"" + accessDeniedException.getMessage() + "\"}");
+                    writer.flush();
+                    writer.close();
+                })
             );
+
+        // Configurar o AuthenticationManagerBuilder diretamente
+        http.getSharedObject(AuthenticationManagerBuilder.class)
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder());
+
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return (request, response, authentication) -> {
+            response.setContentType("application/json;charset=UTF-8");
+            response.setStatus(HttpServletResponse.SC_OK);
+            PrintWriter writer = response.getWriter();
+            writer.write("{\"message\": \"Login successful\"}");
+            writer.flush();
+            writer.close();
+        };
+    }
+
+    @Bean
+    public AuthenticationFailureHandler authenticationFailureHandler() {
+        return new SimpleUrlAuthenticationFailureHandler() {
+            @Override
+            public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
+                response.setContentType("application/json;charset=UTF-8");
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                PrintWriter writer = response.getWriter();
+                writer.write("{\"error\": \"Unauthorized\", \"message\": \"" + exception.getMessage() + "\"}");
+                writer.flush();
+                writer.close();
+            }
+        };
+    }
+
+    @Bean
+    public LogoutSuccessHandler logoutSuccessHandler() {
+        return new SimpleUrlLogoutSuccessHandler() {
+            @Override
+            public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+                response.setContentType("application/json;charset=UTF-8");
+                response.setStatus(HttpServletResponse.SC_OK);
+                PrintWriter writer = response.getWriter();
+                writer.write("{\"message\": \"Logout successful\"}");
+                writer.flush();
+                writer.close();
+            }
+        };
     }
 }

@@ -30,19 +30,16 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<String> create(@Valid @RequestBody Usuario usuario) {
         if (!isValidEmail(usuario.getEmail())) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("E-mail inválido.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email inválido.");
         }
-        // Validar Email cadastrado
         if (usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("E-mail já cadastrado.");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email já cadastrado.");
         }
-
-        // Validar CPF
         if (!CPFValidator.isValidCPF(usuario.getCpf())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("CPF inválido.");
         }
-
-        usuario.setSenha(usuario.getSenha()); // Remova a codificação da senha
+    
+        usuario.setSenha(usuario.getSenha()); // A senha será criptografada no setter
         usuario.setAtivo(true);
         usuarioRepository.save(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body("Usuário cadastrado com sucesso.");

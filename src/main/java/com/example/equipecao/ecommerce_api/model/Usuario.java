@@ -12,6 +12,8 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -21,7 +23,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Usuario implements UserDetails {
 
     @Id
@@ -52,7 +53,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(grupo.name()));
+        return List.of(new SimpleGrantedAuthority("ROLE_" + grupo.name()));
     }
 
     @Override
@@ -83,5 +84,9 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return ativo;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = new BCryptPasswordEncoder().encode(senha);
     }
 }
