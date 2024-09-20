@@ -10,4 +10,14 @@ public class LoginController {
     public String login() {
         return "pages/login";
     }
+
+    @GetMapping("/backoffice-login")
+    public String backofficeLogin() {
+        return "pages/backoffice-login";
+    }
+
+    @GetMapping("/backoffice")
+    public String backoffice() {
+        return "pages/backoffice";
+    }
 }

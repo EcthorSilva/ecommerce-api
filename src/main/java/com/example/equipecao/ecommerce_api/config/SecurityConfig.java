@@ -48,7 +48,8 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Desabilitar CSRF para testes
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/static/vendor/**", "/", "/api/produtos/**").permitAll() // Permitir acesso público à página de login, arquivos estáticos e etc
+                .requestMatchers("/login", "/backoffice-login", "/static/vendor/**", "/", "/api/produtos/**").permitAll() // Permitir acesso público à página de login, arquivos estáticos e etc
+                .requestMatchers("/backoffice").authenticated() // Requer autenticação para acessar o backoffice
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
