@@ -48,15 +48,14 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Desabilitar CSRF para testes
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/login", "/api/auth/logout").permitAll() // Permitir acesso público ao login e logout
-                .requestMatchers("/api/produtos/**").hasAnyRole("ADMINISTRADOR", "ESTOQUISTA") // Permitir acesso a produtos para administradores e estoquistas
-                .requestMatchers("/api/**").hasRole("ADMINISTRADOR") // Permitir acesso a todas as outras rotas apenas para administradores
+                .requestMatchers("/login", "/static/vendor/**").permitAll() // Permitir acesso público à página de login e arquivos estáticos
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
+                .loginPage("/login")
                 .loginProcessingUrl("/api/auth/login")
-                .usernameParameter("email")
-                .passwordParameter("senha")
+                .usernameParameter("username")
+                .passwordParameter("password")
                 .successHandler(authenticationSuccessHandler())
                 .failureHandler(authenticationFailureHandler())
                 .permitAll()

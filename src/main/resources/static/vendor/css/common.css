@@ -1,0 +1,43 @@
+/* Scrollbars */
+*::-webkit-scrollbar-track {
+    /* cor e reio da faixa da barra de rolagem */
+    background-color: #212529;
+}
+*::-webkit-scrollbar {
+    /* Largura e altura da barra de rolagem */
+    width: 6px;
+    height: 6px;
+    background-color: #ffffff;
+}
+*::-webkit-scrollbar-thumb {
+    /* Cor e raio do "polegar" da barra de rolagem */
+    background-color: #88888881;
+    border-radius: 35px;
+}
+.overflow-auto {
+    scroll-behavior: smooth;
+}
+
+/* cards da sessão It’ll blow your mind. */
+.card-item {
+    width: 300px; /* Largura padrão para dispositivos móveis */
+    scroll-snap-align: start;
+}
+
+@media (min-width: 768px) { 
+    .card-item {
+        width: 400px; /* Largura padrão para PC */
+    }
+}  
+
+.card .position-absolute, 
+.card .card-img-overlay {
+    pointer-events: none;
+}
+
+
+/* card carrinho de compras */
+
+.min-height-card {
+    min-height: 31rem;
+}
