@@ -33,6 +33,9 @@ public class SecurityConfig {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
+    @Autowired
+    private CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -48,7 +51,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Desabilitar CSRF para testes
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/backoffice-login", "/static/vendor/**", "/", "/api/produtos/**").permitAll() // Permitir acesso público à página de login, arquivos estáticos e etc
+                .requestMatchers("/login", "/backoffice-login", "/static/vendor/**", "/", "/api/produtos/**" , "/api/usuarios").permitAll() // Permitir acesso público à página de login, arquivos estáticos e etc
                 .requestMatchers("/backoffice").authenticated() // Requer autenticação para acessar o backoffice
                 .anyRequest().authenticated()
             )
@@ -67,14 +70,7 @@ public class SecurityConfig {
                 .permitAll()
             )
             .exceptionHandling(exception -> exception
-                .authenticationEntryPoint((request, response, authException) -> {
-                    response.setContentType("application/json;charset=UTF-8");
-                    response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                    PrintWriter writer = response.getWriter();
-                    writer.write("{\"error\": \"Unauthorized\", \"message\": \"" + authException.getMessage() + "\"}");
-                    writer.flush();
-                    writer.close();
-                })
+                .authenticationEntryPoint(customAuthenticationEntryPoint) // Usar o CustomAuthenticationEntryPoint
                 .accessDeniedHandler((request, response, accessDeniedException) -> {
                     response.setContentType("application/json;charset=UTF-8");
                     response.setStatus(HttpServletResponse.SC_FORBIDDEN);

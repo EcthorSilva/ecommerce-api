@@ -59,3 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+// validação
+(function() {
+    const scriptName = document.currentScript.src.split('/').pop();
+    console.log(`${scriptName} carregado com sucesso`);
+})();

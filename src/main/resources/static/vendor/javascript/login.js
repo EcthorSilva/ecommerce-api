@@ -84,4 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-console.log("Login.js carregado!");
+// validação
+(function() {
+    const scriptName = document.currentScript.src.split('/').pop();
+    console.log(`${scriptName} carregado com sucesso`);
+})();

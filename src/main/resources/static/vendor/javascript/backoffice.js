@@ -23,3 +23,8 @@ function abrirModal() {
         modalProduto.show();
     }
 }
+
+(function() {
+    const scriptName = document.currentScript.src.split('/').pop();
+    console.log(`${scriptName} carregado com sucesso`);
+})();

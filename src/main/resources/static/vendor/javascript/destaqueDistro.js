@@ -83,3 +83,9 @@ async function carregarProdutos() {
 
 // Chamar a função para carregar os produtos quando a página carregar
 document.addEventListener('DOMContentLoaded', carregarProdutos);
+
+// validação
+(function() {
+    const scriptName = document.currentScript.src.split('/').pop();
+    console.log(`${scriptName} carregado com sucesso`);
+})();
