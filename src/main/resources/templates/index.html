@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Home | Ecommerce</title>
+        <!-- css comum -->
+        <link rel="stylesheet" href="/static/vendor/css/common.css"/>
+        <!-- bootstrap 5.3 - css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!-- bootstrap iconsn 1.11.3 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </head>
+    <body data-bs-theme="dark">
+        <nav class="py-2 bg-body-tertiary border-bottom">
+            <div class="container d-flex flex-wrap">
+                <ul class="nav me-auto">
+                    <li class="nav-item"><a href="#" class="nav-link link-body-emphasis px-2 active" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a href="./pages/catalog.html" class="nav-link link-body-emphasis px-2">Features</a></li>
+                    <li class="nav-item d-none d-sm-inline"><a href="#" class="nav-link link-body-emphasis px-2">Pricing</a></li>
+                    <li class="nav-item d-none d-sm-inline"><a href="#" class="nav-link link-body-emphasis px-2">FAQs</a></li>
+                    <li class="nav-item d-none d-sm-inline"><a href="#" class="nav-link link-body-emphasis px-2">About</a></li>
+                </ul>
+                <ul class="nav">
+                    <li class="nav-item"><button type="button" class="btn btn-secondary ms-3 mx-3" onclick="window.location.href='/login'">Login</button></li>
+                    <li class="nav-item"><button type="button" class="btn btn-outline-secondary" onclick="window.location.href='/pages/signup.html'">Sign up</button></button></li>
+                </ul>
+            </div>
+        </nav>
+        <header class="py-3 mb-4 border-bottom sticky-top bg-body">
+            <div class="container d-flex flex-wrap justify-content-center">
+                <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+                    <i class="bi bi-joystick"></i>
+                    <span class="ms-3 fs-5">Double header</span>
+                </a>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+            </div>
+        </header>
+        <!-- destaques - blow your mind -->
+        <div class="container pb-4">
+            <h2 class="pb-2 ps-2"><span class="text-body-secondary">It’ll blow your mind.</span></h2>
+            <div class="row">
+                <div class="col-12">
+                    <div class="d-flex overflow-auto" style="scroll-snap-type: x mandatory; touch-action: pan-x;">
+                        <div class="flex-shrink-0 p-2 card-item">
+                            <div class="bg-body-tertiary border rounded-3 position-relative">
+                                <a href="#" rel="noopener noreferrer" class="text-reset">
+                                    <img src="https://assets.nuuvem.com/image/upload/t_quality_80/v1/highlights/6317966c632c3d0015f472ec/q9zx384trfvtixe46opy.jpg" class="img-fluid border rounded" alt="Image 2">
+                                    <div class="position-absolute bottom-0 end-0 p-2">
+                                        <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded">R$99,99 <span class="badge text-bg-danger">-50%</span></h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 p-2 card-item">
+                            <div class="bg-body-tertiary border rounded-3 position-relative">
+                                <a href="#" rel="noopener noreferrer" class="text-reset">
+                                    <img src="https://assets.nuuvem.com/image/upload/t_quality_80/v1/highlights/623cdb26b88a8a0015c57798/swew2dln6nfzdsmbf2ou.jpg" class="img-fluid border rounded" alt="Image 2">
+                                    <div class="position-absolute bottom-0 end-0 p-2">
+                                        <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex-shrink-0 p-2 card-item">
+                            <div class="bg-body-tertiary border rounded-3 position-relative">
+                                <a href="#" rel="noopener noreferrer" class="text-reset">
+                                    <img src="https://assets.nuuvem.com/image/upload/t_quality_80/v1/highlights/64da95c6d6cc6e0018ccedde/bxhu05h67vulmu5wajpv.jpg" class="img-fluid border rounded" alt="Image 2">
+                                    <div class="position-absolute bottom-0 end-0 p-2">
+                                        <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$54,50 <span class="badge text-bg-danger">-50%</span></h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>                       
+                        <div class="flex-shrink-0 p-2 card-item">
+                            <div class="bg-body-tertiary border rounded-3 position-relative">
+                                <a href="#" rel="noopener noreferrer" class="text-reset">
+                                    <img src="https://assets.nuuvem.com/image/upload/t_quality_80/v1/highlights/610c5eb4c883e602c467759f/kaxtu6uycb6jbbeu78jb.jpg" class="img-fluid border rounded" alt="Image 2">
+                                    <div class="position-absolute bottom-0 end-0 p-2">
+                                        <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$119,96 <span class="badge text-bg-danger">-60%</span></h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- sequancia -->
+        <div class="container py-3">
+            <div class="col-12 col-md-12 d-flex align-items-center justify-content-center justify-content-lg-start pb-2">
+                <div class="col-9 col-md-11">
+                    <h2 class="pb-0 ps-3 ps-md-0"><span class="text-body-secondary">CAPCOM</span></h2>
+                </div>
+                <div class="col-4 col-md-1 ps-3 ps-md-0">
+                    <button type="button" class="btn btn-outline-secondary">ver mais</button>
+                </div>
+            </div>
+            <div class="card-body pb-3">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/635951f2bdc65c2b68ecb095/banners/etxq8vej3ebm0pz0s5rs.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Resident Evil</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/564c95ef69702d648a00011d/banners/jpoaxzjljzw1wiqot603.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Street Fighter V</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/600f36b1c883e6464c052882/banners/tdgiqqtvxmycwabbatg3.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Resident Evil Village</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/5df7db71e8d4f2071032bbd1/banners/bt35weatc5dorv6da9jf.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">RESIDENT EVIL 3</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="container featurette-divider">
+        </div>
+        <!-- lista de games em destaque -->
+        <div class="container pb-3">
+            <div class="col-12 col-md-12 d-flex align-items-center justify-content-center justify-content-lg-start pb-2">
+                <div class="col-9 col-md-11">
+                    <h2 class="pb-0 ps-3 ps-md-0"><span class="text-body-secondary">CAPCOM</span></h2>
+                </div>
+                <div class="col-4 col-md-1 ps-3 ps-md-0">
+                    <button type="button" class="btn btn-outline-secondary">ver mais</button>
+                </div>
+            </div>
+            <div class="card-body pb-3">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/635951f2bdc65c2b68ecb095/banners/etxq8vej3ebm0pz0s5rs.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Resident Evil</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/564c95ef69702d648a00011d/banners/jpoaxzjljzw1wiqot603.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Street Fighter V</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/600f36b1c883e6464c052882/banners/tdgiqqtvxmycwabbatg3.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Resident Evil Village</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/5df7db71e8d4f2071032bbd1/banners/bt35weatc5dorv6da9jf.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">RESIDENT EVIL 3</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="container featurette-divider">
+        </div>
+        <!-- card grande - banner -->
+        <div class="container pb-0">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div style="scroll-snap-type: x mandatory; touch-action: pan-x;">
+                        <div class="flex-shrink-0 p-2">
+                            <div class="card bg-body-tertiary border rounded-3 position-relative">
+                                <a href="#" rel="noopener noreferrer" class="text-reset">
+                                    <img src="https://assets.nuuvem.com/image/upload/t_quality_80/v1/highlights/64a55b9a56062d0016292782/ev6lg4t9pg9whbx4yqma.jpg" 
+                                        class="card-img-top img-fluid border rounded" alt="Image 2">
+                                    <div class="position-absolute bottom-0 end-0 p-2">
+                                        <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$99,99 <span class="badge text-bg-danger">-50%</span></h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="container featurette-divider">
+        </div>
+        <div class="container py-2">
+            <div class="col-12 col-md-12 d-flex align-items-center justify-content-center justify-content-lg-start pb-2">
+                <div class="col-9 col-md-11">
+                    <h2 class="pb-0 ps-3 ps-md-0"><span class="text-body-secondary">CAPCOM</span></h2>
+                </div>
+                <div class="col-4 col-md-1 ps-3 ps-md-0">
+                    <button type="button" class="btn btn-outline-secondary">ver mais</button>
+                </div>
+            </div>
+            <div class="card-body pb-3">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/635951f2bdc65c2b68ecb095/banners/etxq8vej3ebm0pz0s5rs.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Resident Evil</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/564c95ef69702d648a00011d/banners/jpoaxzjljzw1wiqot603.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Street Fighter V</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/600f36b1c883e6464c052882/banners/tdgiqqtvxmycwabbatg3.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Resident Evil Village</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div class="card"><img src="https://assets.nuuvem.com/image/upload/t_banner_big/v1/products/5df7db71e8d4f2071032bbd1/banners/bt35weatc5dorv6da9jf.jpg" alt="Imagem do Produto" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">RESIDENT EVIL 3</h5>
+                                <i class="bi bi-steam text-muted"></i>
+                                <i class="bi bi-windows text-muted"></i>&nbsp;
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-2 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-outline-secondary mt-3 ps-3 pe-3">
+                                    <i class="bi bi-cart-plus"> adicionar</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="container featurette-divider">
+        </div>
+        <!-- card grande - banner -->
+        <div class="container pb-0">
+            <div class="row">
+                <div class="col-12 col-md-12">
+                    <div style="scroll-snap-type: x mandatory; touch-action: pan-x;">
+                        <div class="flex-shrink-0 p-2">
+                            <div class="card bg-body-tertiary border rounded-3 position-relative">
+                                <a href="#" rel="noopener noreferrer" class="text-reset">
+                                    <img src="https://assets.nuuvem.com/image/upload/t_quality_80/v1/highlights/65257415850bd90019a891d3/gzdstpzumebn04yjmeko.jpg" 
+                                        class="card-img-top img-fluid border rounded" alt="Image 2">
+                                    <div class="position-absolute bottom-0 end-0 p-2">
+                                        <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$54,79 <span class="badge text-bg-danger">-60%</span></h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="container featurette-divider">
+        </div>
+        <!-- mais vendidos -->
+        <div class="container my-4">
+            <h2 class="mb-4">Mais Populares</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">1</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">2</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">3</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">4</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">5</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- coluna 2 -->
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">6</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">7</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">8</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">9</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="row g-2">
+                            <div class="position-absolute ps-1">
+                                <h4 class=" text-reset p-1 rounded"><span class="badge text-bg-danger">10</span></h4>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="https://assets.nuuvem.com/image/upload/t_boxshot_big/v1/products/5fa2e4a6a3f8b1112f494fde/boxshots/y4ohgmp7esvgizxbhvah.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="position-absolute bottom-0 end-0 p-2">
+                                    <h6 class="text-reset bg-dark bg-opacity-75 p-1 rounded" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">R$47,99 <span class="badge text-bg-danger">-60%</span></h6>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
+                                        content. This content is a little bit longer.</p>
+                                    <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <!-- footer -->
+        <footer class="container border-top py-5">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <div class="pb-3">
+                        <i class="bi bi-joystick"></i>
+                    </div>
+                    <small class="d-block mb-3 text-body-secondary">© 2017–2024</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Features</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary text-decoration-none" href="#">Business</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Education</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Government</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Gaming</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary text-decoration-none" href="#">Team</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!-- scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+</html>

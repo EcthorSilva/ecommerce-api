@@ -48,7 +48,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Desabilitar CSRF para testes
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login", "/static/vendor/**").permitAll() // Permitir acesso público à página de login e arquivos estáticos
+                .requestMatchers("/login", "/static/vendor/**", "/").permitAll() // Permitir acesso público à página de login e arquivos estáticos
                 .anyRequest().authenticated()
             )
             .formLogin(form -> form
