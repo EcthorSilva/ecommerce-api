@@ -268,12 +268,12 @@
 
                 async function carregarProdutos() {
                     try {
-                        const response = await fetch('http://localhost:8080/api/produtos');
+                        const response = await fetch('http://localhost:8080/api/produtos?page=0&size=10');
                         if (!response.ok) {
                             throw new Error('Erro ao buscar produtos');
                         }
                         const produtos = await response.json();
-                        preencherTabelaProdutos(produtos);
+                        preencherTabelaProdutos(produtos.content);
                     } catch (error) {
                         console.error('Erro:', error);
                     }
@@ -303,11 +303,11 @@
 
                     produtos.forEach(produto => {
                         const row = tabelaProdutos.insertRow();
-                        row.insertCell(0).innerText = produto.codigo;
+                        row.insertCell(0).innerText = produto.id;
                         row.insertCell(1).innerText = produto.nome;
-                        row.insertCell(2).innerText = produto.quantidade;
-                        row.insertCell(3).innerText = produto.valor;
-                        row.insertCell(4).innerText = produto.status ? 'Ativo' : 'Inativo';
+                        row.insertCell(2).innerText = produto.quantidadeEmEstoque;
+                        row.insertCell(3).innerText = produto.preco;
+                        row.insertCell(4).innerText = produto.ativo ? 'Ativo' : 'Inativo';
                         row.insertCell(5).innerHTML = `
                             <button class="btn btn-outline-light">Alterar</button>
                             <button class="btn btn-outline-light">Visualizar</button>
