@@ -20,4 +20,9 @@ public class RouteController {
     public String backoffice() {
         return "pages/backoffice";
     }
+
+    @GetMapping("/catalog")
+    public String catalog() {
+        return "pages/catalog";
+    }
 }
