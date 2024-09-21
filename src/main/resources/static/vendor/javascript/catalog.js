@@ -66,25 +66,74 @@ function adicionarCards(produtos, containerId) {
 }
 
 // Função para fazer a requisição ao endpoint
-async function carregarProdutosCatalogo(containerId) {
+async function carregarProdutosCatalogo(containerId, nome = '') {
     try {
-        const response = await fetch(`http://localhost:8080/api/produtos?page=0&size=9`);
+        const url = nome ? `http://localhost:8080/api/produtos/search?nome=${nome}` : `http://localhost:8080/api/produtos?page=0&size=9`;
+        console.log(`Fetching URL: ${url}`); // Log para depuração
+        const response = await fetch(url);
         const data = await response.json();
         
-        // Verificar se 'content' é um array
-        if (Array.isArray(data.content)) {
-            adicionarCards(data.content, containerId);
+        console.log('Resposta da API:', data); // Log para depuração
+
+        const alertaPesquisa = document.getElementById('alertaPesquisa');
+        const itensContainer = document.getElementById('itensContainer');
+        const itensDePesquisa = document.getElementById('itensDePesquisa');
+
+        // Verificar se a resposta é um array
+        if (Array.isArray(data)) {
+            console.log(`Produtos carregados: ${data.length}`); // Log para depuração
+            if (data.length === 0) {
+                alertaPesquisa?.classList.remove('visually-hidden');
+                itensContainer?.classList.add('visually-hidden');
+                itensDePesquisa?.classList.add('visually-hidden');
+            } else {
+                alertaPesquisa?.classList.add('visually-hidden');
+                adicionarCards(data, containerId);
+            }
+        } else if (Array.isArray(data.content)) {
+            console.log(`Produtos carregados: ${data.content.length}`); // Log para depuração
+            if (data.content.length === 0) {
+                alertaPesquisa?.classList.remove('visually-hidden');
+                itensContainer?.classList.add('visually-hidden');
+                itensDePesquisa?.classList.add('visually-hidden');
+            } else {
+                alertaPesquisa?.classList.add('visually-hidden');
+                adicionarCards(data.content, containerId);
+            }
         } else {
             console.error('A resposta não contém um array de produtos.');
+            alertaPesquisa?.classList.remove('visually-hidden');
+            itensContainer?.classList.add('visually-hidden');
+            itensDePesquisa?.classList.add('visually-hidden');
         }
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
+        document.getElementById('alertaPesquisa')?.classList.remove('visually-hidden');
+        document.getElementById('itensContainer')?.classList.add('visually-hidden');
+        document.getElementById('itensDePesquisa')?.classList.add('visually-hidden');
     }
 }
 
 // Chamar a função para carregar os produtos quando a página carregar
 document.addEventListener('DOMContentLoaded', function() {
     carregarProdutosCatalogo('itensContainer');
+
+    // Adicionar evento de escuta à barra de pesquisa
+    const searchBar = document.getElementById('searchBar');
+    searchBar?.addEventListener('input', function() {
+        const searchTerm = searchBar.value;
+        const itensContainer = document.getElementById('itensContainer');
+        const itensDePesquisa = document.getElementById('itensDePesquisa');
+        if (searchTerm) {
+            console.log(`Pesquisando por: ${searchTerm}`); // Log para depuração
+            itensContainer?.classList.add('visually-hidden');
+            itensDePesquisa?.classList.remove('visually-hidden');
+            carregarProdutosCatalogo('itensDePesquisa', searchTerm);
+        } else {
+            itensContainer?.classList.remove('visually-hidden');
+            itensDePesquisa?.classList.add('visually-hidden');
+        }
+    });
 });
 
 // validação
