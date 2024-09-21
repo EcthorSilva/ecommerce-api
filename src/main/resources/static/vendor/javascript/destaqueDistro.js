@@ -20,8 +20,8 @@ function getCategoriaIcon(categoria) {
 }
 
 // Função para criar e adicionar os cards ao HTML
-function adicionarCards(produtos) {
-    const container = document.getElementById('product-cards');
+function adicionarCards(produtos, containerId) {
+    const container = document.getElementById(containerId);
 
     // Limpa o container antes de adicionar novos cards
     container.innerHTML = '';
@@ -57,32 +57,36 @@ function adicionarCards(produtos) {
 }
 
 // Função para fazer a requisição ao endpoint
-async function carregarProdutos() {
+async function carregarProdutos(distribuidor, containerId, distribuidorId) {
     try {
-        const response = await fetch('http://localhost:8080/api/produtos/distribuidor/Warner Bros. Games');
+        const response = await fetch(`http://localhost:8080/api/produtos/distribuidor/${distribuidor}`);
         const data = await response.json();
         
         // Verificar se 'content' é um array
         if (Array.isArray(data.content)) {
-            adicionarCards(data.content);
+            adicionarCards(data.content, containerId);
         } else {
             console.error('A resposta não contém um array de produtos.');
         }
 
         // Atualizar o nome do distribuidor no elemento <h2>
-        const distribuidorElement = document.querySelector('h2.disName span.text-body-secondary');
+        const distribuidorElement = document.getElementById(distribuidorId);
         if (distribuidorElement) {
-            distribuidorElement.textContent = 'Warner Bros. Games';
+            distribuidorElement.textContent = distribuidor;
         } else {
-            console.error('Elemento do distribuidor não encontrado.');
+            console.error(`Elemento do distribuidor "${distribuidor}" não encontrado.`);
         }
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
     }
 }
 
-// Chamar a função para carregar os produtos quando a página carregar
-document.addEventListener('DOMContentLoaded', carregarProdutos);
+// Chamar as funções para carregar os produtos quando a página carregar
+document.addEventListener('DOMContentLoaded', function() {
+    carregarProdutos('Warner Bros. Games', 'product-cards-1', 'distribuidor-1');
+    carregarProdutos('Devolver', 'product-cards-2', 'distribuidor-2');
+    carregarProdutos('Outra Distribuidora', 'product-cards-3', 'distribuidor-3');
+});
 
 // validação
 (function() {

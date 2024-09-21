@@ -27,12 +27,14 @@ public class ProdutoController {
     @Autowired
     private ProdutoRepository repository;
 
+    // buscar todos os produtos
     @GetMapping
     public Page<Produto> findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "100") int size) {
         Pageable pageable = PageRequest.of(page, size);
         return repository.findAll(pageable);
     }
 
+    // buscar por id
     @GetMapping("/{id}")
     public ResponseEntity<Produto> findById(@PathVariable long id) {
         Optional<Produto> produto = repository.findById(id);
@@ -43,6 +45,7 @@ public class ProdutoController {
         }
     }
 
+    // criar produto
     @PostMapping
     public ResponseEntity<String> create(@Valid @RequestBody Produto produto) {
         try {
@@ -53,6 +56,7 @@ public class ProdutoController {
         }
     }
 
+    // atualizar produto
     @PutMapping("/{id}")
     public ResponseEntity<String> update(@Valid @RequestBody Produto produto, @PathVariable long id) {
         if (!repository.existsById(id)) {
@@ -63,6 +67,7 @@ public class ProdutoController {
         return ResponseEntity.ok("Produto atualizado com sucesso.");
     }
 
+    // deletar produto
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable long id) {
         if (!repository.existsById(id)) {
@@ -72,6 +77,7 @@ public class ProdutoController {
         return ResponseEntity.ok("Produto excluído com sucesso.");
     }
 
+    // atualizar status
     @PatchMapping("/{id}/status")
     public ResponseEntity<String> updateStatus(@PathVariable long id, @RequestParam boolean ativo) {
         Optional<Produto> produtoOpt = repository.findById(id);
@@ -85,6 +91,14 @@ public class ProdutoController {
         }
     }
 
+    // buscar por nome
+    @GetMapping("/search")
+    public ResponseEntity<List<Produto>> getProdutosByNome(@RequestParam String nome) {
+        List<Produto> produtos = repository.findByNomeContainingIgnoreCase(nome);
+        return ResponseEntity.ok(produtos);
+    }
+
+    // buscar por categoria
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<Page<Produto>> findByCategoria(@PathVariable("categoria") String categoriaString,
                                                          @RequestParam(defaultValue = "0") int page,
@@ -95,6 +109,7 @@ public class ProdutoController {
         return ResponseEntity.ok(new PageImpl<>(produtos, pageable, produtos.size()));
     }
 
+    // buscar por distribuidor
     @GetMapping("/distribuidor/{distribuidor}")
     public ResponseEntity<Page<Produto>> findByDistribuidor(@PathVariable String distribuidor,
                                                             @RequestParam(defaultValue = "0") int page,
@@ -104,6 +119,9 @@ public class ProdutoController {
         return ResponseEntity.ok(new PageImpl<>(produtos, pageable, produtos.size()));
     }
 
+    // imagens 
+
+    // adicionar imagem a um produto 
     @PostMapping("/{id}/imagens")
     public ResponseEntity<String> addImagem(@PathVariable long id, @Valid @RequestBody ImagemProduto imagemProduto) {
         Optional<Produto> produtoOpt = repository.findById(id);
@@ -124,6 +142,7 @@ public class ProdutoController {
         }
     }
 
+    // remover imagem de um produto
     @DeleteMapping("/{id}/imagens/{imagemId}")
     public ResponseEntity<String> removeImagem(@PathVariable long id, @PathVariable long imagemId) {
         Optional<Produto> produtoOpt = repository.findById(id);
@@ -137,6 +156,7 @@ public class ProdutoController {
         }
     }
 
+    // listar imagens de um produto
     @GetMapping("/{id}/imagens")
     public ResponseEntity<List<ImagemProduto>> listarImagens(@PathVariable long id) {
         Optional<Produto> produtoOpt = repository.findById(id);
@@ -148,6 +168,7 @@ public class ProdutoController {
         }
     }
 
+    // listar imagem por id
     @GetMapping("/{id}/imagens/{imagemId}")
     public ResponseEntity<ImagemProduto> listarImagemPorId(@PathVariable long id, @PathVariable long imagemId) {
         Optional<Produto> produtoOpt = repository.findById(id);
