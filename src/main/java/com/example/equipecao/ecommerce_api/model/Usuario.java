@@ -1,5 +1,6 @@
 package com.example.equipecao.ecommerce_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -18,7 +19,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "TB_Usuario")
+@Table(name="TB_Usuario")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -30,63 +31,67 @@ public class Usuario implements UserDetails {
     private long id;
 
     @NotBlank
+    @Size(max = 100)
     private String nome;
 
     @NotBlank
-    @Size(min = 11, max = 11)
+    @Size(max = 11)
     private String cpf;
 
     @NotBlank
     @Email
-    @Column(unique = true)
+    @Size(max = 100)
     private String email;
 
     @NotBlank
     private String senha;
 
-    @Enumerated(EnumType.STRING)
     @NotNull
+    @Enumerated(EnumType.STRING)
     private Grupo grupo;
 
     @NotNull
     private boolean ativo;
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + grupo.name()));
     }
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return senha;
     }
 
     @Override
+    @JsonIgnore
     public String getUsername() {
         return email;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return ativo;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = new BCryptPasswordEncoder().encode(senha);
     }
 }
