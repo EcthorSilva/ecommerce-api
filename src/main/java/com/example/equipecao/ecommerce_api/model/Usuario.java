@@ -94,4 +94,8 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return ativo;
     }
+
+    public void setSenha(String senha) {
+        this.senha = new BCryptPasswordEncoder().encode(senha);
+    }
 }
