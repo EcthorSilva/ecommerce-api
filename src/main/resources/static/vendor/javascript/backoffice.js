@@ -83,3 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Carregar usuários automaticamente ao carregar a página
     carregarUsuarios();
 });
+
+// validação
+(function() {
+    const scriptName = document.currentScript.src.split('/').pop();
+    console.log(`${scriptName} carregado com sucesso`);
+})();
