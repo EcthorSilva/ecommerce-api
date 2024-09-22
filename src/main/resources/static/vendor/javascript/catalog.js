@@ -1,3 +1,6 @@
+let produtosGlobal = [];
+let paginaAtual = 0;
+
 // Função para calcular o desconto
 function calcularDesconto(preco, precoComDesconto) {
     return Math.round(((preco - precoComDesconto) / preco) * 100);
@@ -66,9 +69,9 @@ function adicionarCards(produtos, containerId) {
 }
 
 // Função para fazer a requisição ao endpoint
-async function carregarProdutosCatalogo(containerId, nome = '') {
+async function carregarProdutosCatalogo(containerId, nome = '', pagina = 0) {
     try {
-        const url = nome ? `http://localhost:8080/api/produtos/search?nome=${nome}` : `http://localhost:8080/api/produtos?page=0&size=9`;
+        const url = nome ? `http://localhost:8080/api/produtos/search?nome=${nome}` : `http://localhost:8080/api/produtos?page=${pagina}&size=9`;
         console.log(`Fetching URL: ${url}`); // Log para depuração
         const response = await fetch(url);
         const data = await response.json();
@@ -88,6 +91,7 @@ async function carregarProdutosCatalogo(containerId, nome = '') {
                 itensDePesquisa?.classList.add('visually-hidden');
             } else {
                 alertaPesquisa?.classList.add('visually-hidden');
+                produtosGlobal = data; // Armazena os produtos na variável global
                 adicionarCards(data, containerId);
             }
         } else if (Array.isArray(data.content)) {
@@ -98,25 +102,37 @@ async function carregarProdutosCatalogo(containerId, nome = '') {
                 itensDePesquisa?.classList.add('visually-hidden');
             } else {
                 alertaPesquisa?.classList.add('visually-hidden');
+                produtosGlobal = data.content; // Armazena os produtos na variável global
                 adicionarCards(data.content, containerId);
             }
         } else {
             console.error('A resposta não contém um array de produtos.');
-            alertaPesquisa?.classList.remove('visually-hidden');
-            itensContainer?.classList.add('visually-hidden');
+            alertaPesquisa?.classList.remove('visualmente-hidden');
+            itensContainer?.classList.add('visualmente-hidden');
             itensDePesquisa?.classList.add('visually-hidden');
         }
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
-        document.getElementById('alertaPesquisa')?.classList.remove('visually-hidden');
+        document.getElementById('alertaPesquisa')?.classList.remove('visualmente-hidden');
         document.getElementById('itensContainer')?.classList.add('visually-hidden');
         document.getElementById('itensDePesquisa')?.classList.add('visually-hidden');
     }
 }
 
+// Função para ordenar os produtos
+function ordenarProdutos(ordenacao) {
+    let produtosOrdenados = [...produtosGlobal];
+    if (ordenacao === '1') {
+        produtosOrdenados.sort((a, b) => a.preco - b.preco);
+    } else if (ordenacao === '2') {
+        produtosOrdenados.sort((a, b) => b.preco - a.preco);
+    }
+    adicionarCards(produtosOrdenados, 'itensContainer');
+}
+
 // Chamar a função para carregar os produtos quando a página carregar
 document.addEventListener('DOMContentLoaded', function() {
-    carregarProdutosCatalogo('itensContainer');
+    carregarProdutosCatalogo('itensContainer', '', paginaAtual);
 
     // Adicionar evento de escuta à barra de pesquisa
     const searchBar = document.getElementById('searchBar');
@@ -133,6 +149,20 @@ document.addEventListener('DOMContentLoaded', function() {
             itensContainer?.classList.remove('visually-hidden');
             itensDePesquisa?.classList.add('visually-hidden');
         }
+    });
+
+    // Adicionar evento de escuta ao botão de ordenação
+    document.querySelector('.btn-outline-secondary').addEventListener('click', function() {
+        const ordenacao = document.getElementById('inputGroupSelect04').value;
+        ordenarProdutos(ordenacao);
+    });
+
+    // Adicionar eventos de escuta aos botões do marcador de página
+    document.querySelectorAll('.btn-toolbar .btn-group .btn').forEach((button, index) => {
+        button.addEventListener('click', function() {
+            paginaAtual = index;
+            carregarProdutosCatalogo('itensContainer', '', paginaAtual);
+        });
     });
 });
 
