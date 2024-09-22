@@ -2,6 +2,9 @@ package com.example.equipecao.ecommerce_api.controller;
 
 import com.example.equipecao.ecommerce_api.model.Usuario;
 import com.example.equipecao.ecommerce_api.repository.UsuarioRepository;
+
+import java.util.Enumeration;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -62,12 +65,27 @@ public class AuthController {
         HttpSession session = request.getSession(false);
         if (session != null) {
             System.out.println("Sessão recuperada: " + session.getId());
-            Usuario usuario = (Usuario) session.getAttribute("usuario");
-            if (usuario != null) {
-                System.out.println("Usuário recuperado da sessão: " + usuario.getEmail());
-                return ResponseEntity.ok(usuario);
+    
+            // Imprimir todos os atributos da sessão
+            Enumeration<String> attributeNames = session.getAttributeNames();
+            while (attributeNames.hasMoreElements()) {
+                String attributeName = attributeNames.nextElement();
+                System.out.println("Atributo da sessão: " + attributeName + " = " + session.getAttribute(attributeName));
+            }
+    
+            // Recuperar o contexto de segurança
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication != null && authentication.isAuthenticated()) {
+                Object principal = authentication.getPrincipal();
+                if (principal instanceof Usuario) {
+                    Usuario usuario = (Usuario) principal;
+                    System.out.println("Usuário recuperado da sessão: " + usuario.getEmail());
+                    return ResponseEntity.ok(usuario);
+                } else {
+                    System.out.println("Principal não é uma instância de Usuario.");
+                }
             } else {
-                System.out.println("Usuário não encontrado na sessão.");
+                System.out.println("Autenticação não encontrada ou não autenticada.");
             }
         } else {
             System.out.println("Sessão não encontrada.");
