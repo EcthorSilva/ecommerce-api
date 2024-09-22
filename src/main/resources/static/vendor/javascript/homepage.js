@@ -106,6 +106,9 @@ async function carregarProdutos(distribuidor, containerId, distribuidorId) {
     try {
         const response = await fetch(`http://localhost:8080/api/produtos/distribuidor/${distribuidor}`);
         const data = await response.json();
+
+        console.log(`${distribuidor} Fetching URL:`, response.url); // Log para depuração
+        console.log(`${distribuidor} Produtos:`, data); // Log para depuração
         
         // Verificar se 'content' é um array
         if (Array.isArray(data.content)) {
@@ -131,6 +134,9 @@ async function carregarMaisVendidos(containerId) {
     try {
         const response = await fetch(`http://localhost:8080/api/produtos?page=0&size=10`);
         const data = await response.json();
+
+        console.log('Mais vendidos Fetching URL:', response.url); // Log para depuração
+        console.log('Produtos mais vendidos:', data); // Log para depuração
         
         // Verificar se 'content' é um array
         if (Array.isArray(data.content)) {

@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => {
             if (response.ok) {
                 // Sucesso no login, redireciona para página de perfil
-                window.location.href = "/pages/profile.html";
+                window.location.href = "/profile";
             } else {
                 // Erro no login, extrai a mensagem de erro do JSON
                 return response.json();
