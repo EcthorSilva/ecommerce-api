@@ -1,5 +1,6 @@
 let produtosGlobal = [];
 let paginaAtual = 0;
+let totalPaginas = 0;
 
 // Função para calcular o desconto
 function calcularDesconto(preco, precoComDesconto) {
@@ -82,6 +83,10 @@ async function carregarProdutosCatalogo(containerId, nome = '', pagina = 0) {
         const itensContainer = document.getElementById('itensContainer');
         const itensDePesquisa = document.getElementById('itensDePesquisa');
 
+        // Limpa os contêineres de itens antes de adicionar novos itens
+        itensContainer.innerHTML = '';
+        itensDePesquisa.innerHTML = '';
+
         // Verificar se a resposta é um array
         if (Array.isArray(data)) {
             console.log(`Produtos carregados: ${data.length}`); // Log para depuração
@@ -103,17 +108,19 @@ async function carregarProdutosCatalogo(containerId, nome = '', pagina = 0) {
             } else {
                 alertaPesquisa?.classList.add('visually-hidden');
                 produtosGlobal = data.content; // Armazena os produtos na variável global
+                totalPaginas = data.totalPages; // Armazena o número total de páginas
                 adicionarCards(data.content, containerId);
+                atualizarPaginacao();
             }
         } else {
             console.error('A resposta não contém um array de produtos.');
-            alertaPesquisa?.classList.remove('visualmente-hidden');
-            itensContainer?.classList.add('visualmente-hidden');
+            alertaPesquisa?.classList.remove('visually-hidden');
+            itensContainer?.classList.add('visually-hidden');
             itensDePesquisa?.classList.add('visually-hidden');
         }
     } catch (error) {
         console.error('Erro ao carregar produtos:', error);
-        document.getElementById('alertaPesquisa')?.classList.remove('visualmente-hidden');
+        document.getElementById('alertaPesquisa')?.classList.remove('visually-hidden');
         document.getElementById('itensContainer')?.classList.add('visually-hidden');
         document.getElementById('itensDePesquisa')?.classList.add('visually-hidden');
     }
@@ -128,6 +135,24 @@ function ordenarProdutos(ordenacao) {
         produtosOrdenados.sort((a, b) => b.preco - a.preco);
     }
     adicionarCards(produtosOrdenados, 'itensContainer');
+}
+
+// Função para atualizar os botões de paginação
+function atualizarPaginacao() {
+    const paginacaoContainer = document.querySelector('.btn-toolbar .btn-group');
+    paginacaoContainer.innerHTML = ''; // Limpa os botões de paginação
+
+    for (let i = 0; i < totalPaginas; i++) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn btn-outline-secondary';
+        button.textContent = i + 1;
+        button.addEventListener('click', function() {
+            paginaAtual = i;
+            carregarProdutosCatalogo('itensContainer', '', paginaAtual);
+        });
+        paginacaoContainer.appendChild(button);
+    }
 }
 
 // Chamar a função para carregar os produtos quando a página carregar
@@ -148,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             itensContainer?.classList.remove('visually-hidden');
             itensDePesquisa?.classList.add('visually-hidden');
+            carregarProdutosCatalogo('itensContainer', '', paginaAtual); // Recarregar todos os produtos
         }
     });
 
@@ -155,14 +181,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('.btn-outline-secondary').addEventListener('click', function() {
         const ordenacao = document.getElementById('inputGroupSelect04').value;
         ordenarProdutos(ordenacao);
-    });
-
-    // Adicionar eventos de escuta aos botões do marcador de página
-    document.querySelectorAll('.btn-toolbar .btn-group .btn').forEach((button, index) => {
-        button.addEventListener('click', function() {
-            paginaAtual = index;
-            carregarProdutosCatalogo('itensContainer', '', paginaAtual);
-        });
     });
 });
 
