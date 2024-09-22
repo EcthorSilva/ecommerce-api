@@ -13,7 +13,6 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -93,9 +92,5 @@ public class Usuario implements UserDetails {
     @JsonIgnore
     public boolean isEnabled() {
         return ativo;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = new BCryptPasswordEncoder().encode(senha);
     }
 }
