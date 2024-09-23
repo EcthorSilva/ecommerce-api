@@ -210,45 +210,61 @@
                 </div>
             </div>
         </footer>
-        
         <!-- Modal Cadastro de Usuário -->
-        <div class="modal fade" id="modalUsuario" tabindex="-1" aria-labelledby="modalUsuarioLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="modalUsuario" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+            aria-labelledby="modalUsuarioLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalUsuarioLabel">Cadastrar Novo Usuário</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="formCadastroUsuario">
                             <div class="mb-3">
                                 <label for="nomeUsuario" class="form-label">Nome do Usuário</label>
                                 <input type="text" class="form-control" id="nomeUsuario" placeholder="Nome">
+                            </div>
+                            <div class="mb-3">
+                                <label for="cpfUsuario" class="form-label">CPF</label>
+                                <input type="text" class="form-control" id="cpfUsuario" placeholder="CPF">
                             </div>
                             <div class="mb-3">
                                 <label for="emailUsuario" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="emailUsuario" placeholder="Email">
                             </div>
                             <div class="mb-3">
-                                <label for="statusUsuario" class="form-label">Status</label>
-                                <select class="form-control" id="statusUsuario">
-                                    <option>Ativo</option>
-                                    <option>Inativo</option>
+                                <label for="grupoUsuario" class="form-label">Grupo</label>
+                                <select class="form-control" id="grupoUsuario">
+                                    <option value="ADMINISTRADOR">Administrador</option>
+                                    <option value="ESTOQUISTA">Estoquista</option>
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="senhaUsuario" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="senhaUsuario" placeholder="Senha">
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmarSenhaUsuario" class="form-label">Confirmar Senha</label>
+                                <input type="password" class="form-control" id="confirmarSenhaUsuario"
+                                    placeholder="Confirmar Senha">
+                            </div>
                         </form>
+                        <div class="alert alert-danger d-flex justify-content-center mt-4 visually-hidden" role="alert">
+                            <strong>erro</strong>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Salvar</button>
+                        <button type="button" class="btn btn-primary" id="salvarUsuario">Salvar</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Modal Cadastro de Produto -->
-        <div class="modal fade" id="modalProduto" tabindex="-1" aria-labelledby="modalProdutoLabel" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade" id="modalProduto" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalProdutoLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalProdutoLabel">Cadastrar Novo Produto</h5>
@@ -287,5 +303,18 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/static/vendor/javascript/Backoffice.js"></script>
         <script src="/static/vendor/javascript/common.js"></script>
+        <script>
+            function abrirModal() {
+                const tituloTabela = document.getElementById('tituloTabela').innerText;
+
+                if (tituloTabela === 'Usuários') {
+                    const modalUsuario = new bootstrap.Modal(document.getElementById('modalUsuario'));
+                    modalUsuario.show();
+                } else if (tituloTabela === 'Produtos') {
+                    const modalProduto = new bootstrap.Modal(document.getElementById('modalProduto'));
+                    modalProduto.show();
+                }
+            }
+        </script>
     </body>
 </html>

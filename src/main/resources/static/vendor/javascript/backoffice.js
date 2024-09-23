@@ -103,21 +103,104 @@ document.addEventListener("DOMContentLoaded", function () {
     // Carregar usuários automaticamente ao carregar a página
     carregarUsuarios();
 
-    function abrirModal() {
-        const tituloTabela = document.getElementById('tituloTabela').innerText;
-    
-        if (tituloTabela === 'Usuários') {
-            const modalUsuario = new bootstrap.Modal(document.getElementById('modalUsuario'));
-            modalUsuario.show();
-        } else if (tituloTabela === 'Produtos') {
-            const modalProduto = new bootstrap.Modal(document.getElementById('modalProduto'));
-            modalProduto.show();
-        }
-    }
-    
     // validação
     (function () {
         const scriptName = document.currentScript.src.split('/').pop();
         console.log(`${scriptName} carregado com sucesso`);
     })();
+});
+
+// modal para cadastrar novo usuario
+document.addEventListener("DOMContentLoaded", function () {
+    function validarEmail(email) {
+        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    function validarCPF(cpf) {
+        cpf = cpf.replace(/[^\d]+/g, '');
+        if (cpf.length !== 11) return false;
+        if (/^(\d)\1+$/.test(cpf)) return false;
+        let soma = 0;
+        for (let i = 0; i < 9; i++) soma += parseInt(cpf.charAt(i)) * (10 - i);
+        let resto = 11 - (soma % 11);
+        if (resto === 10 || resto === 11) resto = 0;
+        if (resto !== parseInt(cpf.charAt(9))) return false;
+        soma = 0;
+        for (let i = 0; i < 10; i++) soma += parseInt(cpf.charAt(i)) * (11 - i);
+        resto = 11 - (soma % 11);
+        if (resto === 10 || resto === 11) resto = 0;
+        return resto === parseInt(cpf.charAt(10));
+    }
+
+    function exibirErro(mensagem) {
+        var errorDiv = document.querySelector('.alert-danger');
+        errorDiv.querySelector('strong').textContent = mensagem;
+        errorDiv.classList.remove('visually-hidden');
+        setTimeout(function () {
+            errorDiv.classList.add('visually-hidden');
+        }, 3000);
+    }
+
+    async function registrarUsuario(dados) {
+        try {
+            const response = await fetch('http://localhost:8080/api/usuarios', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao cadastrar usuário');
+            }
+            alert('Usuário cadastrado com sucesso!');
+            location.reload();
+        } catch (error) {
+            console.error('Erro:', error);
+            exibirErro('Erro ao cadastrar usuário');
+        }
+    }
+
+    document.getElementById("salvarUsuario").addEventListener("click", async function () {
+        const nome = document.getElementById("nomeUsuario").value;
+        const cpf = document.getElementById("cpfUsuario").value;
+        const email = document.getElementById("emailUsuario").value;
+        const grupo = document.getElementById("grupoUsuario").value;
+        const senha = document.getElementById("senhaUsuario").value;
+        const confirmarSenha = document.getElementById("confirmarSenhaUsuario").value;
+
+        if (!nome || !cpf || !email || !grupo || !senha || !confirmarSenha) {
+            exibirErro("Todos os campos são obrigatórios.");
+            return;
+        }
+
+        if (!validarEmail(email)) {
+            exibirErro("Email inválido.");
+            return;
+        }
+
+        if (!validarCPF(cpf)) {
+            exibirErro("CPF inválido.");
+            return;
+        }
+
+        if (senha !== confirmarSenha) {
+            exibirErro("As senhas não coincidem.");
+            return;
+        }
+
+        const senhaCriptografada = btoa(senha); // Simulação de criptografia, substitua por uma real
+
+        const dados = {
+            nome: nome,
+            cpf: cpf,
+            email: email,
+            senha: senhaCriptografada,
+            grupo: grupo,
+            ativo: true
+        };
+
+        await registrarUsuario(dados);
+    });
 });
