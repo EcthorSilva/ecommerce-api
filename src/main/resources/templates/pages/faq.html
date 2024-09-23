@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cart | Ecommerce</title>
+        <title>FAQs | Ecommerce</title>
         <!-- css comum -->
         <link rel="stylesheet" href="/static/vendor/css/common.css"/>
         <!-- bootstrap 5.3 - css -->
@@ -17,6 +17,7 @@
                 <ul class="nav me-auto">
                     <li class="nav-item"><a href="/" class="nav-link link-body-emphasis px-2 active" aria-current="page">Home</a></li>
                     <li class="nav-item"><a href="/catalog" class="nav-link link-body-emphasis px-2">Catalogo</a></li>
+                    <li class="nav-item d-none d-sm-inline"><a href="/backoffice-login" class="nav-link link-body-emphasis px-2">Backoffice</a></li>
                     <li class="nav-item d-none d-sm-inline"><a href="/faq" class="nav-link link-body-emphasis px-2">FAQs</a></li>
                     <li class="nav-item d-none d-sm-inline"><a href="#" class="nav-link link-body-emphasis px-2">About</a></li>
                 </ul>
@@ -56,81 +57,45 @@
                     <span class="ms-3 fs-5">L33TSPEAK</span>
                 </a>
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                    <input id="searchBar" type="search" class="form-control" placeholder="Search..." aria-label="Search">
                 </form>
             </div>
         </header>
-        <section>
-            <div class="container">
-                <div class="row d-flex justify-content-center my-4">
-                    <div class="col-md-8">
-                        <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h5 class="mb-0">Produto</h5>
-                            </div>
-                            <div class="card-body min-height-card">
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4">
-                            <div class="card-header py-3">
-                                <h5 class="mb-0">Resumo</h5>
-                            </div>
-                            <div class="card-body">
-                                <ul class="list-group list-group-flush mb-2">
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
-                                        Valor dos Produtos:
-                                        <span>R$ 0,00</span>
-                                    </li>
-                                    <hr class="my-3 text-muted">
-                                    <li class="d-flex justify-content-between align-items-center border-0 px-0">
-                                        <div>
-                                            <strong>Total à prazo:</strong>
-                                        </div>
-                                        <span><strong>R$ 0,00</strong></span>
-                                    </li>
-                                    <li class="text-muted list-cust list-group-flshu d-flex justify-content-between align-items-center px-0 pb-2">
-                                        <span>
-                                            (em até 3x de R$ 0,00 sem juros)
-                                        </span>
-                                    </li>
-                                    <hr class="my-2 text-muted">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
-                                        <div>
-                                            Valor à vista no <strong>Pix</strong>:
-                                        </div>
-                                        <span><strong>R$ 0,00</strong></span>
-                                    </li>
-                                </ul> 
-                                <div class="d-flex flex-column p-1">
-                                    <button type="button" class="btn1 btn btn-outline-secondary btn-lg btn-block mb-3" onclick="window.location.href='/';">
-                                        Continuar comprando
-                                    </button>
-                                    <button type="button" class="btn2 btn btn-secondary btn-lg btn-block" onclick="window.location.href='/checkout';">
-                                        Ir para o pagamento
-                                    </button>
-                                </div>   
-                            </div>
-                        </div>
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <form>
-                                    <div class="mb-2">
-                                        <label for="cupom" class="mb-3"><strong>Cupom de desconto</strong></label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control py-2" id="cupom" placeholder="cupom">
-                                            <button class="btn2 btn btn-secondary" type="#">Aplicar Cupom</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+        <section class="">
+            <div class="d-flex align-items-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="pb-5">
+                            <h2 class="text-body-emphasis fw-bold">[Suporte] FAQ - Ativação e Restrição Regional</h2>
+                                                        
+                            <p><strong class="text-body-emphasis fw-bold">► Comprei meu jogo, mas não há nenhuma chave na conta. O que houve?</strong><br>
+                                Há alguns detalhes que devem ser observados. São eles:</p>
+                            <p><strong class="text-body-emphasis fw-bold">- O jogo que comprou está em pré-venda?</strong> Se estiver, não se preocupe. É normal que a chave não esteja disponível ainda, pois isso deve acontecer apenas quando o jogo lançar. E caso o jogo tenha preload, a chave estará disponível alguns dias antes do lançamento para que possa fazer o download e instalação do jogo.&nbsp;<br>
+                                <strong class="text-body-emphasis fw-bold">- O jogo que comprou é DRM-Free?</strong><em> </em>Se for, não se preocupe também. Jogos que são DRM-Free não possuem chave de ativação. Basta baixar e instalar o jogo. Em sua conta da L33TSPEAK em "Meus Games" ao clicar na capa do jogo, vai aparecer o link para download.<br>
+                                <strong class="text-body-emphasis fw-bold">- A chave de ativação pode ter acabado:</strong> isso não é comum acontecer, mas há essa possibilidade principalmente quando existe uma demanda muito grande de algum jogo em específico. Isso normalmente é temporário e em fazemos o possível para as chaves fiquem novamente disponíveis o quanto antes.&nbsp;<br>
+                                <strong class="text-body-emphasis fw-bold">- O pedido pode estar ainda sendo analisado:</strong> alguns jogos requerem análise adicional antes da chave ser liberada na conta da L33TSPEAK. Os jogos que são analisados e o tempo que leva para concluir a análise vão ter essa informação na página do jogo em "Informações Importantes". Mais detalhes sobre essa análise podem ser obtidas <a href="#">clicando aqui</a>.<br>
+                                &nbsp;</p>
+                            <p><strong class="text-body-emphasis fw-bold">► Adquiri um jogo na pré-venda e ainda não foi entregue a chave. Se eu receber a chave e ativar no lançamento, os bônus de pré-venda que eram oferecidos serão perdidos?&nbsp;</strong><br>
+                                A chave de pré-venda é diferente de uma chave normal, então mesmo que ela seja ativada após o lançamento, quaisquer bônus que eram oferecidos durante a pré-venda serão normalmente liberados assim que a chave for ativada. Então não se preocupe! Você não irá perder os bônus. ;)<br>
+                                &nbsp;</p>
+                            <p><strong class="text-body-emphasis fw-bold">► Estou tentando ativar meu jogo, mas a chave está dando como inválida.</strong><br>
+                                Isso é comum de acontecer nas seguintes&nbsp;situações:</p>
+                            <p><strong class="text-body-emphasis fw-bold">- Quando a chave está sendo inserida de maneira incorreta:</strong> pode acontecer de um dígito da chave ser inserida erroneamente ou mesmo faltando alguma parte da chave. Para evitar que isso aconteça, de preferência, copie (CTRL+V) e cole (CTRL+C)&nbsp;a chave no momento da ativação.<br>
+                                <strong class="text-body-emphasis fw-bold">-&nbsp;Alguns jogos fornecem duas chaves de ativação (geralmente uma do jogo base e outra de alguma DLC):</strong> se as duas (ou mais) chaves forem ativadas de uma vez como se fossem uma chave só, a ativação não será concluída. Uma forma de saber se há duas chaves em sua conta da L33TSPEAK, é verificando em "Meus Games &gt; Nome do Jogo" se aparece duas linhas no campo da chave em sua conta da L33TSPEAK. Se tiver duas linhas (ou mais), é porque são duas chaves (ou mais)&nbsp;que estão lá.<br>
+                                <strong class="text-body-emphasis fw-bold">-&nbsp;Plataforma de ativação errada:</strong> a forma de ativação é informada na página do produto antes da compra e em "Meus Games &gt; Nome do Jogo". Se ativar a chave em local diferente do que é informado, a ativação não será concluída. Então, por exemplo, se tentar ativar a chave de um jogo da plataforma GOG na Steam, a ativação não será concluída.<br>
+                                <strong class="text-body-emphasis fw-bold">-&nbsp;Instabilidade dos servidores de ativação:</strong> isso geralmente é um problema temporário e caso a ativação da chave seja feita durante esse período, pode ser que a chave mesmo sendo válida seja considerada como inválida. Como isso é um problema geralmente temporário, se tentar ativar um pouco mais tarde, deve funcionar normal.<br>
+                                &nbsp;</p>
+                            <p><strong class="text-body-emphasis fw-bold">► Quando ativo minha chave ela dá como já usada por outra conta</strong><br>
+                                Principalmente em caso de jogos ativados na Steam, Uplay, Origin, Rockstar Social Club e outras plataformas, a chave de ativação só pode ser ativada uma vez. Depois que foi ativada, é necessário fazer login na mesma conta da plataforma onde o jogo foi ativada. A L33TSPEAK não controla aonde a chave é ativada e é por isso também que é possível ativar a chave em qualquer conta que desejar.<br>
+                                &nbsp;</p>
+                            <p><strong class="text-body-emphasis fw-bold">► Queria que meu jogo fosse ativado na Steam ou em outra plataforma. Vocês trocam minha chave para que eu possa para ativar na plataforma que&nbsp;quero?</strong><br>
+                                A forma de ativação dos jogos não é opcional, infelizmente.&nbsp;Por isso, não dá para escolher a forma como deseja ativar seu jogo. Então, por exemplo, se a ativação do jogo for informado que é Uplay, ele só será ativado na Uplay. Não é possível ativar na Steam ou em outro lugar diferente.<br>
+                                &nbsp;</p>
+                            <p><strong class="text-body-emphasis fw-bold">► Comprei meu jogo e quando tento ativar diz que está bloqueado ou indisponível para ativação em meu país.</strong><br>
+                                Na página do jogo é informado o local de ativação (região/país). Certifique-se que a chave está sendo ativada no local indicado. É muito importante que não use Proxy, VPN e nem qualquer outro método para disfarçar o seu GeoIP, pois isso poderá causar problemas e você pode receber uma chave bloqueada em sua região ou mesmo após ter ativado a chave pode ser que não consiga jogar pelos mesmos motivos.</p>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
         <!-- footer -->
         <footer class="container border-top py-5">

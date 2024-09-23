@@ -36,4 +36,9 @@ public class RouteController {
     public String cart() {
         return "pages/cart";
     }
+    // rota para a pagina de FAQ
+    @GetMapping("/faq")
+    public String faq() {
+        return "pages/faq";
+    }
 }
