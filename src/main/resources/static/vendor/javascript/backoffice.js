@@ -1,3 +1,21 @@
+/*
+* TO DO: 
+* 
+* - Usuarios
+* 1. colocar o modal com o id confirmacaoModal da pagina backoffice.html 
+*    para confirmar a ativação/desativação do usuario;
+* 2. colocar uma validação para que o usuario logado não consiga desativar 
+*    ele mesmo (endpoint /api/auth/me verifica o usuario logado);
+* 3. fazer com que o botão de editar pegue as informações do usuario e coloque no modal para edição.
+*
+* - Produtos
+* 1. colocar o modal de cadastro de produtos para funcionar, junto com a opção de adicionar
+*    as imagens como no criterio de aceite do professor;
+* 2. colocar o mesmo botão de ativação/desativação do usuario para o produto;
+* 3. colocar o botão de editar para funcionar;
+* 4. colocar o botão para visualizar o produto como nos criterios de aceite.
+*/ 
+
 document.addEventListener("DOMContentLoaded", function () {
     let paginaAtual = 0;
     let totalPaginas = 0;

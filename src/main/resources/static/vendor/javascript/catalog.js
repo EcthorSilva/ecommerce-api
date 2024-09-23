@@ -1,3 +1,12 @@
+/*
+* TO DO: 
+* 
+* 1- Colocar um filtro para organizar os produtos por preço (mais barato, mais caro e vice-versa);
+* 2- Colocar um filtro para a plataforma, ao selecionar a plataforma, os produtos devem ser filtrados;
+*
+*/ 
+
+
 let produtosGlobal = [];
 let paginaAtual = 0;
 let totalPaginas = 0;
