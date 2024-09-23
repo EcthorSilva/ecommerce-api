@@ -41,4 +41,9 @@ public class RouteController {
     public String faq() {
         return "pages/faq";
     }
+    // rota para a pagina de cadastro
+    @GetMapping("/signup")
+    public String signup() {
+        return "pages/signup";
+    }
 }
