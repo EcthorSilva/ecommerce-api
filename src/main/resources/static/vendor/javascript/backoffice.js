@@ -36,13 +36,37 @@ document.addEventListener("DOMContentLoaded", function () {
             row.insertCell(0).innerText = usuario.id;
             row.insertCell(1).innerText = usuario.nome;
             row.insertCell(2).innerText = usuario.email;
-            row.insertCell(3).innerText = usuario.ativo ? 'Ativo' : 'Inativo';
-            row.insertCell(4).innerText = usuario.grupo;
-            row.insertCell(5).innerHTML = `
-                <button class="btn btn-outline-light">Alterar</button>
-                <button class="btn btn-outline-light">Visualizar</button>
+            row.insertCell(3).innerText = usuario.grupo;
+            row.insertCell(4).innerHTML = `
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="statusSwitch${usuario.id}" ${usuario.ativo ? 'checked' : ''}>
+                    <label class="form-check-label" for="statusSwitch${usuario.id}">${usuario.ativo ? 'Ativo' : 'Inativo'}</label>
+                </div>
             `;
+            row.insertCell(5).innerHTML = `
+                <button class="btn btn-outline-light">Editar</button>
+            `;
+
+            // Adiciona evento de clique ao switch
+            const switchElement = row.querySelector(`#statusSwitch${usuario.id}`);
+            switchElement.addEventListener('change', function () {
+                atualizarStatusUsuario(usuario.id, switchElement.checked);
+            });
         });
+    }
+
+    async function atualizarStatusUsuario(id, status) {
+        try {
+            const response = await fetch(`http://localhost:8080/api/usuarios/${id}/status?ativo=${status}`, {
+                method: 'PATCH'
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao atualizar status do usuário');
+            }
+            carregarUsuarios(); // Recarrega a tabela de usuários
+        } catch (error) {
+            console.error('Erro:', error);
+        }
     }
 
     function preencherTabelaProdutos(produtos) {
