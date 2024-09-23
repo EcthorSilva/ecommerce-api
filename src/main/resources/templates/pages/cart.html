@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cart | Ecommerce</title>
+        <!-- css comum -->
+        <link rel="stylesheet" href="/static/vendor/css/common.css"/>
+        <!-- bootstrap 5.3 - css -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!-- bootstrap iconsn 1.11.3 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </head>
+    <body data-bs-theme="dark">
+        <nav class="py-2 bg-body-tertiary border-bottom">
+            <div class="container d-flex flex-wrap">
+                <ul class="nav me-auto">
+                    <li class="nav-item"><a href="/" class="nav-link link-body-emphasis px-2 active" aria-current="page">Home</a></li>
+                    <li class="nav-item"><a href="/catalog" class="nav-link link-body-emphasis px-2">Catalogo</a></li>
+                    <li class="nav-item d-none d-sm-inline"><a href="/backoffice-login" class="nav-link link-body-emphasis px-2">Backoffice</a></li>
+                    <li class="nav-item d-none d-sm-inline"><a href="#" class="nav-link link-body-emphasis px-2">FAQs</a></li>
+                    <li class="nav-item d-none d-sm-inline"><a href="#" class="nav-link link-body-emphasis px-2">About</a></li>
+                </ul>
+                <ul class="nav logged-out">
+                    <li class="nav-item"><button type="button" class="btn btn-secondary ms-3 mx-3" onclick="window.location.href='/login'">Login</button></li>
+                    <li class="nav-item"><button type="button" class="btn btn-outline-secondary" onclick="window.location.href='/signup'">Sign up</button></button></li>
+                </ul>
+                <ul class="nav logged-in d-flex align-items-center visually-hidden">
+                    <div class="dropdown text-end z-2 ">
+                        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://i.pinimg.com/564x/91/9a/4a/919a4aa404d9aff95dcbf0079396e321.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+                        </a>
+                        <ul class="dropdown-menu text-small" style="">
+                            <li><a class="dropdown-item" href="/profile">Perfil</a></li>
+                            <li><a class="dropdown-item" href="/backoffice">Backoffice</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item logout-button" href="">Sair</a></li>
+                        </ul>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <li class="nav-item d-none d-sm-inline">
+                        <a href="/cart" class="nav-link link-body-emphasis px-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                                <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <header class="py-3 mb-4 border-bottom sticky-top bg-body z-1">
+            <div class="container d-flex flex-wrap justify-content-center">
+                <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto link-body-emphasis text-decoration-none">
+                    <i class="bi bi-joystick"></i>
+                    <span class="ms-3 fs-5">L33TSPEAK</span>
+                </a>
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+                    <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form>
+            </div>
+        </header>
+        <section>
+            <div class="container">
+                <div class="row d-flex justify-content-center my-4">
+                    <div class="col-md-8">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h5 class="mb-0">Produto</h5>
+                            </div>
+                            <div class="card-body min-height-card">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <div class="card-header py-3">
+                                <h5 class="mb-0">Resumo</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush mb-2">
+                                    <li
+                                        class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                                        Valor dos Produtos:
+                                        <span>R$ 0,00</span>
+                                    </li>
+                                    <hr class="my-3 text-muted">
+                                    <li class="d-flex justify-content-between align-items-center border-0 px-0">
+                                        <div>
+                                            <strong>Total à prazo:</strong>
+                                        </div>
+                                        <span><strong>R$ 0,00</strong></span>
+                                    </li>
+                                    <li class="text-muted list-cust list-group-flshu d-flex justify-content-between align-items-center px-0 pb-2">
+                                        <span>
+                                            (em até 3x de R$ 0,00 sem juros)
+                                        </span>
+                                    </li>
+                                    <hr class="my-2 text-muted">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0">
+                                        <div>
+                                            Valor à vista no <strong>Pix</strong>:
+                                        </div>
+                                        <span><strong>R$ 0,00</strong></span>
+                                    </li>
+                                </ul> 
+                                <div class="d-flex flex-column p-1">
+                                    <button type="button" class="btn1 btn btn-outline-secondary btn-lg btn-block mb-3" onclick="window.location.href='/';">
+                                        Continuar comprando
+                                    </button>
+                                    <button type="button" class="btn2 btn btn-secondary btn-lg btn-block" onclick="window.location.href='/checkout';">
+                                        Ir para o pagamento
+                                    </button>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-2">
+                                        <label for="cupom" class="mb-3"><strong>Cupom de desconto</strong></label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control py-2" id="cupom" placeholder="cupom">
+                                            <button class="btn2 btn btn-secondary" type="#">Aplicar Cupom</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- footer -->
+        <footer class="container border-top py-5">
+            <div class="row">
+                <div class="col-12 col-md">
+                    <div class="pb-3">
+                        <i class="bi bi-joystick"></i>
+                    </div>
+                    <small class="d-block mb-3 text-body-secondary">© 2017–2024</small>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Features</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>Resources</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary text-decoration-none" href="#">Business</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Education</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Government</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Gaming</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-md">
+                    <h5>About</h5>
+                    <ul class="list-unstyled text-small">
+                        <li><a class="link-secondary text-decoration-none" href="#">Team</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
+                        <li><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!-- scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="/static/vendor/javascript/common.js"></script>
+    </body>
+</html>

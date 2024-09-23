@@ -31,4 +31,9 @@ public class RouteController {
     public String catalog() {
         return "pages/catalog";
     }
+    // rota para a pagina de carrinho
+    @GetMapping("/cart")
+    public String cart() {
+        return "pages/cart";
+    }
 }
