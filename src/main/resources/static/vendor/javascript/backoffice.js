@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+    let paginaAtual = 0;
+    let totalPaginas = 0;
+
     async function carregarUsuarios() {
         try {
             const response = await fetch('http://localhost:8080/api/usuarios');
@@ -12,16 +15,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    async function carregarProdutos() {
+    async function carregarProdutos(pagina = 0) {
         try {
-            const response = await fetch('http://localhost:8080/api/produtos?page=0&size=10');
-            if (!response.ok) {
-                throw new Error('Erro ao buscar produtos');
-            }
-            const produtos = await response.json();
-            preencherTabelaProdutos(produtos.content);
+            const response = await fetch(`/api/produtos?page=${pagina}&size=10`);
+            const data = await response.json();
+            totalPaginas = data.totalPages;
+            preencherTabelaProdutos(data.content);
+            atualizarPaginacao();
         } catch (error) {
-            console.error('Erro:', error);
+            console.error('Erro ao carregar produtos:', error);
         }
     }
 
@@ -45,8 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function preencherTabelaProdutos(produtos) {
         const tabelaProdutos = document.getElementById('tabelaProdutos').getElementsByTagName('tbody')[0];
-        tabelaProdutos.innerHTML = ''; // Limpa a tabela antes de preencher
-
+        tabelaProdutos.innerHTML = '';
         produtos.forEach(produto => {
             const row = tabelaProdutos.insertRow();
             row.insertCell(0).innerText = produto.id;
@@ -61,11 +62,29 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    function atualizarPaginacao() {
+        const paginacaoContainer = document.querySelector('.btn-toolbar .btn-group');
+        paginacaoContainer.innerHTML = '';
+        for (let i = 0; i < totalPaginas; i++) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'btn btn-outline-secondary';
+            button.textContent = i + 1;
+            button.addEventListener('click', function() {
+                paginaAtual = i;
+                carregarProdutos(paginaAtual);
+            });
+            paginacaoContainer.appendChild(button);
+        }
+    }
+
     function showUsuarios() {
         document.getElementById('tabelaUsuarios').classList.remove('d-none');
         document.getElementById('tabelaProdutos').classList.add('d-none');
         document.getElementById('tituloTabela').innerText = 'Usuários';
         document.getElementById('botaoNovo').innerText = '+ Novo Usuário';
+        document.getElementById('paginas123').classList.add('d-none');
+
         carregarUsuarios();
     }
 
@@ -74,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('tabelaProdutos').classList.remove('d-none');
         document.getElementById('tituloTabela').innerText = 'Produtos';
         document.getElementById('botaoNovo').innerText = '+ Novo Produto';
+        document.getElementById('paginas123').classList.remove('d-none');
         carregarProdutos();
     }
 
@@ -82,10 +102,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Carregar usuários automaticamente ao carregar a página
     carregarUsuarios();
-});
 
-// validação
-(function() {
-    const scriptName = document.currentScript.src.split('/').pop();
-    console.log(`${scriptName} carregado com sucesso`);
-})();
+    function abrirModal() {
+        const tituloTabela = document.getElementById('tituloTabela').innerText;
+    
+        if (tituloTabela === 'Usuários') {
+            const modalUsuario = new bootstrap.Modal(document.getElementById('modalUsuario'));
+            modalUsuario.show();
+        } else if (tituloTabela === 'Produtos') {
+            const modalProduto = new bootstrap.Modal(document.getElementById('modalProduto'));
+            modalProduto.show();
+        }
+    }
+    
+    // validação
+    (function () {
+        const scriptName = document.currentScript.src.split('/').pop();
+        console.log(`${scriptName} carregado com sucesso`);
+    })();
+});

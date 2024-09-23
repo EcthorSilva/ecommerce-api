@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href = '/login';
             } else {
                 const errorData = await response.text();
-                exibirErro(errorData || 'Erro ao registrar usuário');
+                exibirErro(errorData);
             }
         } catch (error) {
             exibirErro('Erro ao registrar usuário');
